@@ -42,14 +42,14 @@
 
   <script id="stock-list-template" type="text/x-handlebars-template">
     {{#each stock}}
-    <div class='stockListBox'><p class='stockListName'>" + {{this.name}} +"</p></div>
+    <div class='stockListBox'><p class='stockListName'>  {{this.symbol}} </p></div>
     {{/each}}
   </script>
 
-
+  <script src="handlebars/dist/handlebars.js"></script>
   <script src="./jquery/dist/jquery.js"></script>
-  <script src="logic.js"></script>
   <script src="render.js"></script>
+  <script src="logic.js"></script>
   <script src="main.js"></script>
 </body>
 

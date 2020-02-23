@@ -8,19 +8,12 @@ class Renderer {
 
     renderMainManue(){
         
-        $("#mainMenu").empty()
+        $("#currentData").empty()
         let template = Handlebars.compile($('#main-menu-template').html())
-        $('#mainMenu').append(template())
+        $('#currentData').append(template())
     }
 
     renderUserList(users) {
-        $("#userList").empty()
-        for (let user of users) {
-            
-            let userListBox = $("<div class='userListBox'><p class='userListName'>" + user.name +"</p> <p class='cityListTemp'>" +city.temperature+ "°C</p><p class='cityListCondition'>" +city.condition+ "</p></div>")
- 
-            $("#userList").append(userListBox)
-        }
     }
 
     renderUser(user) {
@@ -33,13 +26,15 @@ class Renderer {
     }
 
     renderStocksList(stocks) {
-        $("#stockList").empty()
-        for (let stock of stocks) {
-            
-            let stockListBox = $("")// <p class='cityListTemp'>" +city.temperature+ "°C</p><p class='cityListCondition'>" +city.condition+ "</p></div>")
- 
-            $("#stockList").append(stockListBox)
-        }
+        
+        $("#dataList").empty()
+        let template = Handlebars.compile($('#stock-list-template').html())
+        const newHTML = template({ stock:stocks.data});
+       $("#dataList").append(newHTML)
+
+       console.log({stock:stocks.data});
+       
+        
     }
 
     renderStock(stock) {
