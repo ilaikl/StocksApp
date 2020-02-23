@@ -7,9 +7,11 @@ const parseString = require('xml2js').parseString;
 const Recommendation = require('../model/Recommendation.js')
 const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt'
 `
-const symbols = ['AAPL', 'TSLA', 'TEVA', 'GOOGL', ]
+const symbols ="'SNAP','TWTR','TEVA','VOD.L'"
 router.get('/users', async function (req, res) {
     const users = await User.find({})
+    console.log(users);
+    
     res.send(users)
 })
 router.get('/user/:userId',  function (req, res) {
@@ -18,15 +20,23 @@ router.get('/user/:userId',  function (req, res) {
         res.send(user)   })
 })    
 router.get('/stocks', async function (req, res) {
-    request( ` https://api.worldtradingdata.com/api/v1/stock?symbol=${symbols}.L&api_token=${apiKey}`,function(){
-res.send()
+    request( `https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP,TWTR,VOD.L&api_token=wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt
+    `,function(req, response){
+
+        let stocks = JSON.parse(response.body)
+        console.log(stocks);
+        
+
+res.send(stocks)
+
+
     })
 })
 router.get('/stock/:stockIdentifier', async function (req, res) {
     let stockId = req.params.stockIdentifier
     let Data
         try { Data = requestPromise(
-            ` https://api.worldtradingdata.com/api/v1/stock?symbol=${stockId}.L&api_token=${apiKey}`)}
+            ` https://api.worldtradingdata.com/api/v1/stock?symbol=${stockId}&api_token=${apiKey}`)}
         catch(err){
             return
         }

@@ -9,22 +9,22 @@ class Logic {
     }
 
     get users() {
-        return this.users
+        return this._users
     }
     get currentUser() {
-        return this.currentUser
+        return this._currentUser
     }
     get stocks() {
-        return this.stocks
+        return this._stocks
     }
     get currentStock() {
-        return this.currentStock
+        return this._currentStock
     }
     get recommendations() {
-        return this.recommendations
+        return this._recommendations
     }
     get currentRecommendation() {
-        return this.currentRecommendation
+        return this._currentRecommendation
     }
 
     set currentUser(id) {
@@ -75,7 +75,11 @@ class Logic {
     async getStocks() {
         await $.get(`/stocks`)
             .then(async response => {
-                this._stocks = [...response]
+                this._stocks = response
+                // this._stocks = JSON.parse(response)
+                console.log(this._stocks);
+                
+                
             })
     }
 
