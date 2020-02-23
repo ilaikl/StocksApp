@@ -1,56 +1,105 @@
 class Logic {
     constructor() {
-        this._cityData = []
-        this._currentCity = {}
+        this._stocks = []
+        this._currentStock = {}
+        this._users = []
+        this._currentUser = {}
+        this._recommendations = []
+        this._currentRecommendation = {}
     }
 
-    get cityData() {
-        return this._cityData
+    get users() {
+        return this.users
+    }
+    get currentUser() {
+        return this.currentUser
+    }
+    get stocks() {
+        return this.stocks
+    }
+    get currentStock() {
+        return this.currentStock
+    }
+    get recommendations() {
+        return this.recommendations
+    }
+    get currentRecommendation() {
+        return this.currentRecommendation
     }
 
-    get currentCity() {
-        return this._currentCity
+    set currentUser(id) {
+        this._currentUser = this._users.find(e => e.userId == id)
+    }
+    set currentRecommendation(id) {
+        this._currentRecommendation = this._recommendations.find(e => e.recommendationId == id)
+    }
+    set currentStock(id) {
+        this._currentStock = this._stocks.find(e => e.stockId == id)
     }
 
-    set currentCity(name){
-       this._currentCity = this._cityData.find(e =>  e.name==name)
-    }
-
-    async getAndSaveCity(cityName) { //Unused Function
-        await $.get(`/city/${cityName}`)
-            .then(async dataUnparsed=> {
-                let data = JSON.parse(dataUnparsed)
-                let newCity={ name: data.name, temperature: data.main.temp, condition: data.weather[0].main, conditionPic: data.weather[0].icon }
-                await $.post('/city', newCity )
-            })
-    }
-
-    async getCityData(cityName) {
-        await $.get(`/city/${cityName}`)
+    async getUser(uid) {
+        await $.get(`/user/${uid}`)
             .then(dataUnparsed => {
                 let data = JSON.parse(dataUnparsed)
-                this._currentCity = { name: data.name, temperature: data.main.temp, condition: data.weather[0].main, conditionPic: data.weather[0].icon }
+                this._currentUser = {
+                    userId: data.userId,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    img: data.img,
+                    recommendedStocks: [],
+                    rank: data.rank
+                }
             })
     }
 
-    async saveCurrentCity() {        
+    async getUsers() {
+        await $.get(`/users`)
+            .then(async response => {
+                this._users = [...response]
+            })
+    }
+
+    async getStock(stockId) {
+        await $.get(`/stock/${stockId}`)
+            .then(dataUnparsed => {
+                let data = JSON.parse(dataUnparsed)
+                this._currentStock = {
+                    stockId: data.stockId,
+                    stockVal: data.stockVal
+                    //add stock values
+                }
+            })
+    }
+    
+    
+    async getStocks() {
+        await $.get(`/stocks`)
+            .then(async response => {
+                this._stocks = [...response]
+            })
+    }
+
+
+    async getRecommendation(recommendationId) {
+        await $.get(`/recommendation/${recommendationId}`)
+            .then(dataUnparsed => {
+                let data = JSON.parse(dataUnparsed)
+                this._currentRecommendation = {
+                    
+                    recommendationId:data.recommendationId,
+                    stockName: data.stockName,
+                    currentDate: data.currentDate,
+                    forcastDate: data.forcastDate,
+                    currentValuw:data.currentValuw,
+                    forcastValue:data.forcastValue,
+                    user: data.user.userId  
+                }
+            })
+    }
+
+
+    async saveRecommendation() {
         await $.post('/city', this._currentCity)
     }
 
-    async getDataFromDB() {
-        await $.get(`/cities`)
-            .then(async response => {
-                this._cityData = [...response]
-            })
-    }
-
-    async removeCurrentCity() {
-        await $.ajax({
-            url: `/city/${this._currentCity.name}`,
-            type: 'DELETE',
-            success: function (params) {
-                console.log(params);
-            }
-          })
-    }
 }

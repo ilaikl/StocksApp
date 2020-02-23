@@ -10,8 +10,9 @@ const handleSearch = async function () {
 }
 
 const loadPage = async function () {
-    await logic.getDataFromDB()
-    renderer.renderCities(logic.cityData)
+    renderer.renderMainManue()
+    await logic.getStocks()
+    renderer.renderStocksList(logic.stocks)
 }
 
 const saveCity = async function () {
