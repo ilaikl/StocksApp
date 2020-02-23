@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const recommendationSchema = new Schema({
     recommendationId:Number,
-    stockName: String,
+    stockSymbol: String,
     currentDate: Date,
     forcastDate: Date,
     currentValuw:Number,
