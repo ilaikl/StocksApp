@@ -24,13 +24,12 @@
   <div id="currentData">
   </div>
 
-  
+
   <div id="dataList">
-  </div>  
+  </div>
 
 
-
-<!-- Handelbars -->
+  <!-- Handelbars -->
   <script id="main-menu-template" type="text/x-handlebars-template">
     <div id="userInput">
       <input type="text" id="stock-input" placeholder="Search Stock">
@@ -39,6 +38,18 @@
       <button id="getUserBtn" onclick=getUser()><i class="fa fa-search"></i></button>
     </div>
   </script>
+
+
+  <script id="user-data-template" type="text/x-handlebars-template">
+    <div class='userDataBox'><p class="userData">  {{}} </p></div>
+  </script>
+
+  <script id="stock-data-template" type="text/x-handlebars-template">
+
+    <div class='stockDataBox'><p class='stockData'>  {{symbol}} </p></div>
+  </script>
+
+
 
   <script id="stock-list-template" type="text/x-handlebars-template">
     {{#each stock}}

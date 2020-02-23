@@ -5,8 +5,9 @@ const User = require('../model/User.js')
 const requestPromise = require('request-promise')
 const parseString = require('xml2js').parseString;
 const Recommendation = require('../model/Recommendation.js')
-const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt'
-`
+
+const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
+
 const symbols ="'SNAP','TWTR','TEVA','VOD.L'"
 router.get('/users', async function (req, res) {
     const users = await User.find({})
@@ -20,16 +21,12 @@ router.get('/user/:userId',  function (req, res) {
         res.send(user)   })
 })    
 router.get('/stocks', async function (req, res) {
-    request( `https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP,TWTR,VOD.L&api_token=wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt
-    `,function(req, response){
+    request( `https://api.worldtradingdata.com/api/v1/stock?symbol=SNAP,TWTR,VOD.L&api_token=${apiKey}`
 
+    ,function(req, response){
         let stocks = JSON.parse(response.body)
         console.log(stocks);
-        
-
-res.send(stocks)
-
-
+        res.send(stocks)
     })
 })
 router.get('/stock/:stockIdentifier', async function (req, res) {
@@ -51,7 +48,15 @@ parseString(Data, (err, result) => {
         }
     })
 })
-})    
+})
+
+
+router.get('/recommendations/:stockSymbol', function (req, res) {
+    Recommendation.find({stockSymbol:req.params.stockSymbol}, function (err, recommendations) {
+        res.send(recommendations)
+    })
+})
+
 router.get('/recommendations', function (req, res) {
     Recommendation.find({}, function (err, recommendation) {
         res.send(recommendation)

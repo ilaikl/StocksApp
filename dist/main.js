@@ -43,6 +43,26 @@ $("#cityList").on("click", ".cityListBox", async function () {
 
 })
 
+const getUser = function(){
+
+    let userInput = $('#user-input').val()
+    $('#dataList').empty()
+    $('#currentData').empty()
+    Logic.loadData(userInput).then(function (userId){
+        render.userRender(userId)
+    })
+
+
+}
+
+// $('#getUserBtn').on('click', async function(){
+    
+// const
+
+
+// })
+
 
 
 loadPage()
+
