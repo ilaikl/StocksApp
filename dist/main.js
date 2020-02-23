@@ -1,48 +1,61 @@
-
 let renderer = new Renderer()
 let logic = new Logic()
-
-const handleSearch = async function () {
-    await logic.getCityData($("#city-input").val())
-    
-    renderer.renderCity(logic.currentCity)
-    
-}
-
-const loadPage = async function () {
+const loadMainPage = async function () {
     renderer.renderMainManue()
     await logic.getStocks()
     renderer.renderStocksList(logic.stocks)
 }
-
-const saveCity = async function () {
-    await logic.saveCurrentCity()
-    loadPage()
-}
-
-const removeCity = async function () {
-    await logic.removeCurrentCity()
-    loadPage()    
-}
-
-
-
-
-$("#cityList").on("click", ".cityListBox", async function () {
-
-    $(".cityListBox").css("background-color", "white")
-    $(this).css("background-color", "#87f257")
-
-    $(".cityListCondition").find("i").remove()
-    // $(this).find(".cityListCondition").css("margin-left","50px")
-    $(this).find(".cityListCondition").append($("<i class='fa fa-trash' onclick=removeCity() aria-hidden='true'></i>"))
+const loadStocksPage = async function (stockSymbol) {
+    await logic.getStock(stockSymbol)
+    renderer.renderStock(logic.currentStock)
     
+    await logic.getRecommendations(stockSymbol)
+    renderer.renderRecommendationList(logic.recommendations)
+}
+const loadUsersPage = async function (stockSymbol) {
+    await logic.getStock(stockSymbol)
+    renderer.renderStock(logic.currentStock)
     
-    logic.currentCity = $(this).find(".cityListName")[0].innerText
-    renderer.renderCity(logic.currentCity)
-
+    await logic.getRecommendations(stockSymbol)
+    renderer.renderRecommendationList(logic.recommendations)
+}
+const getUsersPage = async function () {
+    loadUsersPage($("#user-input").val())
+}
+const getStocksPage = async function () {
+    loadStocksPage($("#stock-input").val())
+}
+$("#dataList").on("click", ".stockListBox", async function () {
+    loadStocksPage($(this).find(".stockListSymbol")[0].innerText)
 })
-
-
-
-loadPage()
+loadMainPage()let renderer = new Renderer()
+let logic = new Logic()
+const loadMainPage = async function () {
+    renderer.renderMainManue()
+    await logic.getStocks()
+    renderer.renderStocksList(logic.stocks)
+}
+const loadStocksPage = async function (stockSymbol) {
+    await logic.getStock(stockSymbol)
+    renderer.renderStock(logic.currentStock)
+    
+    await logic.getRecommendations(stockSymbol)
+    renderer.renderRecommendationList(logic.recommendations)
+}
+const loadUsersPage = async function (stockSymbol) {
+    await logic.getStock(stockSymbol)
+    renderer.renderStock(logic.currentStock)
+    
+    await logic.getRecommendations(stockSymbol)
+    renderer.renderRecommendationList(logic.recommendations)
+}
+const getUsersPage = async function () {
+    loadUsersPage($("#user-input").val())
+}
+const getStocksPage = async function () {
+    loadStocksPage($("#stock-input").val())
+}
+$("#dataList").on("click", ".stockListBox", async function () {
+    loadStocksPage($(this).find(".stockListSymbol")[0].innerText)
+})
+loadMainPage()

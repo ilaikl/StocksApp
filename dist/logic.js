@@ -7,7 +7,6 @@ class Logic {
         this._recommendations = []
         this._currentRecommendation = {}
     }
-
     get users() {
         return this._users
     }
@@ -26,7 +25,6 @@ class Logic {
     get currentRecommendation() {
         return this._currentRecommendation
     }
-
     set currentUser(id) {
         this._currentUser = this._users.find(e => e.userId == id)
     }
@@ -36,7 +34,6 @@ class Logic {
     set currentStock(id) {
         this._currentStock = this._stocks.find(e => e.stockId == id)
     }
-
     async getUser(uid) {
         await $.get(`/user/${uid}`)
             .then(dataUnparsed => {
@@ -51,14 +48,12 @@ class Logic {
                 }
             })
     }
-
     async getUsers() {
         await $.get(`/users`)
             .then(async response => {
                 this._users = [...response]
             })
     }
-
     async getStock(stockId) {
         await $.get(`/stock/${stockId}`)
             .then(dataUnparsed => {
@@ -82,8 +77,13 @@ class Logic {
                 
             })
     }
-
-
+    async getRecommendationsByStockSymbol(stockSymbol) {
+        await $.get(`/recommendations/${stockSymbol}`)
+            .then(async response => {
+                this._recommendations = response              
+                
+            })
+    }
     async getRecommendation(recommendationId) {
         await $.get(`/recommendation/${recommendationId}`)
             .then(dataUnparsed => {
@@ -100,10 +100,7 @@ class Logic {
                 }
             })
     }
-
-
     async saveRecommendation() {
         await $.post('/city', this._currentCity)
     }
-
 }
