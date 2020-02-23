@@ -84,6 +84,14 @@ class Logic {
     }
 
 
+    async getRecommendationsByStockSymbol(stockSymbol) {
+        await $.get(`/recommendations/${stockSymbol}`)
+            .then(async response => {
+                this._recommendations = response              
+                
+            })
+    }
+
     async getRecommendation(recommendationId) {
         await $.get(`/recommendation/${recommendationId}`)
             .then(dataUnparsed => {
