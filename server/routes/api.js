@@ -2,72 +2,61 @@ const express = require('express')
 const router = express.Router()
 const request = require('request')
 const User = require('../model/User.js')
+const requestPromise = require('request-promise')
+const parseString = require('xml2js').parseString;
 const Recommendation = require('../model/Recommendation.js')
-
-
-router.get('/users', function (req, res) {
-    
+const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt'
+`
+const symbols = ['AAPL', 'TSLA', 'TEVA', 'GOOGL', ]
+router.get('/users', async function (req, res) {
+    const users = await User.find({})
+    res.send(users)
 })
-
-router.get('/user/:userName', function (req, res) {
-    
-    let userName = req.params.userName
+router.get('/user/:userId',  function (req, res) {
+    let userId = req.params.userId
+    User.findOne({userId: req.params.userId}, function (err, user) {
+        res.send(user)   })
+})    
+router.get('/stocks', async function (req, res) {
+    request( ` https://api.worldtradingdata.com/api/v1/stock?symbol=${symbols}.L&api_token=${apiKey}`,function(){
+res.send()
+    })
 })
-
-router.get('/stock/:stockIdentifier', function (req, res) {
-    
+router.get('/stock/:stockIdentifier', async function (req, res) {
     let stockId = req.params.stockIdentifier
-    request(`http://url`, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            res.send(body)
+    let Data
+        try { Data = requestPromise(
+            ` https://api.worldtradingdata.com/api/v1/stock?symbol=${stockId}.L&api_token=${apiKey}`)}
+        catch(err){
+            return
         }
-        else {
-            console.log("errorrrrr")
-        }
-    })
-})
-
-router.get('/stocs', function (req, res) {
-    
-    request(`http://url`, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            res.send(body)
-        }
-        else {
-            console.log("errorrrrr")
+parseString(Data, (err, result) => {
+    Data = result.current
+    Data = [Data]
+    const relevantData = Data.map( t => {
+        return{
+           stockId: t.stockIdentifier[0].$.name,
+           stockName: t.stockIdentifier,
+           currentDate: t.stockIdentifier
         }
     })
 })
-
-
-router.get('/recommendation', function (req, res) {
-
+})    
+router.get('/recommendations', function (req, res) {
     Recommendation.find({}, function (err, recommendation) {
         res.send(recommendation)
     })
-
+})
+router.get('/recommendation/:recommendationId', function (req, res) {
+    Recommendation.findOne({recommendationId: req.params.recommendationId}, function (err, recommendation) {
+        res.send(recommendation)
+    })
 })
 
-router.post('/recommendation', async function (req, res) {
-    if(req.body.!=undefined && req.body.!=undefined){
-        let recommendation = new Recommendation({ })
-
-        // await City.remove({"name":req.body.name})
-
-        recommendation.save()
-        
+router.post('/recommendation',  function (req, res) {
+    const rcmnd = new Recommendation(req.body)
+    rcmnd.save()        
         res.end()
-
-    }
-})
-
-
-
-// router.delete('/city/:cityName', function (req, res) {
-//     City.deleteOne({ name: req.params.cityName }, function (err, ct) {
-//         res.send(ct)
-//     })
-// })
-
+    })
 
 module.exports = router

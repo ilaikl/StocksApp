@@ -4,28 +4,48 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Weather App</title>
+  <title>Stocks App</title>
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <div id="currentCity">
 
-    <div id="userInput">
-      
-      <input type="text" id="city-input" placeholder="Search City">
-      <button id="getCityBtn" onclick=handleSearch()><i class="fa fa-search"></i></button>
-      
+  <div id="navBar">
+    <div id="logo">
+      <img>
     </div>
+    <div id="optionsMenuButton">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
 
-    <div id="cityData"></div>
-    <br>
-    <button id="saveCityBtn" onclick=saveCity()>Save City To Favorites</button>
+
+  <div id="currentData">
   </div>
 
   
-  <div id="cityList"></div>  
+  <div id="dataList">
+  </div>  
+
+
+
+<!-- Handelbars -->
+  <script id="main-menu-template" type="text/x-handlebars-template">
+    <div id="userInput">
+      <input type="text" id="stock-input" placeholder="Search Stock">
+      <button id="getStocksBtn" onclick=getStocks()><i class="fa fa-search"></i></button>
+      <input type="text" id="user-input" placeholder="Search User">
+      <button id="getUserBtn" onclick=getUser()><i class="fa fa-search"></i></button>
+    </div>
+  </script>
+
+  <script id="stock-list-template" type="text/x-handlebars-template">
+    {{#each stock}}
+    <div class='stockListBox'><p class='stockListName'>" + {{this.name}} +"</p></div>
+    {{/each}}
+  </script>
+
 
   <script src="./jquery/dist/jquery.js"></script>
   <script src="logic.js"></script>
