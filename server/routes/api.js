@@ -37,8 +37,8 @@ router.get('/stock/:stockIdentifier', async function (req, res) {
         catch(err){
             return
         }
-parseString(Data, (err, result) => {
-    Data = result.current
+    parseString(Data, (err, result) => {
+    Data = result.current //Error : Cannot read property 'current' of undefined
     Data = [Data]
     const relevantData = Data.map( t => {
         return{
