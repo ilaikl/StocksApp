@@ -50,6 +50,11 @@ class Renderer {
 
     }
 
+    renderRecPageBottom(){
+        $("#dataList").empty()
+        let template = Handlebars.compile($('#rec-page-bottom-template').html())
+        $("#dataList").append(template())
+    }
     renderRecommendation(recommendation) {
 
         $("#currentData").empty()
