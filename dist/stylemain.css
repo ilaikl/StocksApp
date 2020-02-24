@@ -1,0 +1,122 @@
+html {
+    background: url(https://r1.ilikewallpaper.net/iphone-x-wallpapers/download/75329/Empire-State-Building--iphone-x-wallpaper-ilikewallpaper_com.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+body{
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+
+
+}
+
+
+#main-continer 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #searchbar {
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  background-color: white;
+  width: calc(100vw - 30px);
+  margin: 0 auto;
+  margin-top: 10%;
+  height: 40px;
+  border-radius: 20px;
+  opacity: 50%;
+}
+#input {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  width: calc(100vw - 40%);
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  outline: none;
+  border: white 1px;
+}
+#submit {
+  align-self: center;
+  font-size: 25px;
+  color: black;
+}
+#savedContainer {
+  margin-top: 30px;
+  display: grid;
+  grid-template-rows: auto;
+  gap: 1%;
+}
+.savedCity {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  background-color: rgba(180, 180, 180, 0.2);
+  border-radius: 15px;
+  color: white;
+}
+.savedCity img {
+  height: 50px;
+}
+.currentCity {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 2fr, 1fr;
+  justify-items: center;
+  align-items: center;
+  background-color: rgba(180, 180, 180, 0.5);
+  border-radius: 15px;
+  color: white;
+  padding: 20px 10px;
+}
+.currentCity .name{
+  font-size: 25px;
+}
+
+.currentCity .temp{
+  font-size: 45px;
+}
+.name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin: 0;
+}
+.condition {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin: 5px 0;
+}
+.temp {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 25px;
+  margin: 0;
+} */

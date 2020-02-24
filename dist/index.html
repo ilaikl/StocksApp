@@ -5,43 +5,48 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Stocks App</title>
+
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="stylemain.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
+  <div id="main-container">
 
-  <!-- <----------------------------------------------------------------------------->
-  <div class="header-container">
-    <a href="#home" class="active">Logo</a>
-    <div id="mySidepanel" class="sidepanel">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <a href="#">info1</a>
-      <a href="#">info2</a>
-      <a href="#">info3</a>
-      <a href="#">info4</a>
+
+    <!-- <----------------------------------------------------------------------------->
+    <div class="header-container">
+      <a onclick='rendrerMain()' id="logo"><img src="../img/logo.png"></a>
+      <div id="mySidepanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a onclick='rendrerMain()'>info1</a>
+        <a onclick='rendrerMain()'>info2</a>
+        <a onclick='rendrerMain()'>info3</a>
+        <a onclick='rendrerMain()'>info4</a>
+      </div>
+      <button class="openbtn" onclick="openNav()">☰</button>
     </div>
-    <button class="openbtn" onclick="openNav()">☰</button>
-  </div>
-  <script>
-    function openNav() {
-      document.getElementById("mySidepanel").style.width = "250px";
-    }
-    function closeNav() {
-      document.getElementById("mySidepanel").style.width = "0";
-    }
-  </script>
+    <script>
+      function openNav() {
+        document.getElementById("mySidepanel").style.width = "250px";
+      }
+      function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+      }
+    </script>
 
-  <!-- <----------------------------------------------------------------------------->
-  <div id="currentData">
-  </div>
+    <!-- <----------------------------------------------------------------------------->
+    <div id="currentData">
+    </div>
 
 
-  <div id="dataList">
-  </div>
+    <div id="dataList">
+    </div>
 
 
-  <!-- Handelbars -->
-  <script id="main-menu-template" type="text/x-handlebars-template">
+    <!-- Handelbars -->
+    <script id="main-menu-template" type="text/x-handlebars-template">
     <div id="userInput">
       <input type="text" id="stock-input" placeholder="Search Stock">
       <button id="getStocksBtn" onclick=getStocksPage()><i class="fa fa-search"></i></button>
@@ -51,11 +56,11 @@
   </script>
 
 
-  <script id="user-data-template" type="text/x-handlebars-template">
+    <script id="user-data-template" type="text/x-handlebars-template">
     <div class='userDataBox'><p class="userData">  {{firstName}} {{lastName}}, rank: {{rank}}  </p></div>
   </script>
 
-  <script id="stock-data-template" type="text/x-handlebars-template">
+    <script id="stock-data-template" type="text/x-handlebars-template">
 
     <div class='stockDataBox'><p class='stockData'>  {{symbol}} </p></div>
   </script>
@@ -63,13 +68,13 @@
 
     <!-- rec list box data-id='something'  -->
 
-    
-  <script id="stock-list-template" type="text/x-handlebars-template">
+    <script id="stock-list-template" type="text/x-handlebars-template">
+
     {{#each stock}}
     <div class='stockListBox'><p class='stockListSymbol'>  {{this.symbol}} </p></div>
     {{/each}}
   </script>
-
+  </div>
   <script src="handlebars/dist/handlebars.js"></script>
   <script src="./jquery/dist/jquery.js"></script>
   <script src="render.js"></script>
