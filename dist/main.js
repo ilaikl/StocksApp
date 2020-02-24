@@ -1,4 +1,3 @@
-
 let renderer = new Renderer()
 let logic = new Logic()
 
