@@ -6,7 +6,8 @@ const requestPromise = require('request-promise')
 const parseString = require('xml2js').parseString;
 const Recommendation = require('../model/Recommendation.js')
 
-const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
+// const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
+const apiKey = `b6ddIvm5Av0rtoFkCWOTGrTwzDU93bJdkJAy34sB7izLjWjfL49TJKu1taGz`
 
 const DBInit = function(){  
     console.log("adding to db");
@@ -28,17 +29,17 @@ const DBInit = function(){
     //     rank: 15,
     //     myInvestments: ["HTA"] })
     // let u3 = new User({
-    //     firstName: "shalom",
-    //     lastName: "tikva",
+    //     firstName: "yam",
+    //     lastName: "ohana",
     //     img: "imgurl",
     //     recommendedStocks: [],
     //     followedUsers:  [],
     //     rank: 14,
-    //     myInvestments: ["HTA"] })
+    //     myInvestments: ["IN"] })
 
     // let r1 = new Recommendation({
 
-    //     stockSymbol: "TEVA"
+    //     stockSymbol: "SNAP"
     // })
 
     // u3.save()
@@ -77,8 +78,6 @@ const DBInit = function(){
 const symbols = "'SNAP','TWTR','TEVA','VOD.L'"
 router.get('/users', async function (req, res) {
     const users = await User.find({})
-    console.log(users);
-
     res.send(users)
 })
 router.get('/user/:userId', function (req, res) {
@@ -138,9 +137,9 @@ router.get('/recommendation/:rid', function (req, res) {
 router.get('/recommendationsUid/:userId', function (req, res) {
 
 
-    Recommendation.find({user:req.params.userId}).exec(function (err, recommendation) {
+    Recommendation.find({user:req.params.userId}).exec(function (err, recommendations) {
 
-        res.send(recommendation)
+        res.send(recommendations)
         
       })
 
