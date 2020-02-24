@@ -44,30 +44,27 @@ const getStocksPage = async function () {
     loadStocksPage($("#stock-input").val())
 }
 
-$("#dataList").on("click", ".stockListBox", async function () {
 
-    console.log($(this).find(".stockListSymbol")[0].innerText);
+const invest = async function () {
+
+    
+    await logic.invest(data)
+
+    loadStocksPage($("#stock-input").val())
+}
+
+$("#dataList").on("click", ".stockListBox", async function () {
     
     loadStocksPage($(this).find(".stockListSymbol")[0].innerText)
 
 })
 
-const getUser = function(){
-
-    let userInput = $('#user-input').val()
-    $('#dataList').empty()
-    $('#currentData').empty()
-    Logic.loadData(userInput).then(function (userId){
-        render.userRender(userId)
-    })
 
 
-}
+$("#dataList").on("click", ".recommendationListBox", async function () {
 
-// $('#getUserBtn').on('click', async function(){
-    
-// const
+    loadStocksPage($(this).data().id)
 
+})
 
-// })
 loadMainPage()

@@ -62,7 +62,7 @@ class Logic {
     async getStock(stockId) {
         await $.get(`/stock/${stockId}`)
             .then(dataUnparsed => {
-                let data = JSON.parse(dataUnparsed)
+                let data = dataUnparsed
                 this._currentStock = {
                     stockId: data.stockId,
                     stockVal: data.stockVal
