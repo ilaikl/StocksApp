@@ -61,12 +61,10 @@ class Logic {
 
     async getStock(stockId) {
         await $.get(`/stock/${stockId}`)
-            .then(dataUnparsed => {
-                let data = dataUnparsed
+            .then(res => {
+               
                 this._currentStock = {
-                    stockId: data.stockId,
-                    stockVal: data.stockVal
-                    //add stock values
+                   ... res.data[0]
                 }
             })
     }
@@ -84,8 +82,10 @@ class Logic {
 
 
     async getRecommendationsByStockSymbol(stockSymbol) {
-        await $.get(`/recommendationsSS/${stockSymbol}`)
+        await $.get(`/recommendationSS/${stockSymbol}`)
             .then(async response => {
+                console.log(response);
+                
                 this._recommendations = response              
                 
             })
