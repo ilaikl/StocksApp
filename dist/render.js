@@ -18,20 +18,19 @@ class Renderer {
 
     renderUser(user) {
 
-        $("#userData").empty()
+        $("#currentData").empty()
         let template = Handlebars.compile($('#user-data-template').html())
         const newHTML = template(user);
-        $("#userData").append(newHTML)
+        $("#currentData").append(newHTML)
     }
 
     renderStocksList(stocks) {
 
-        $("#stockList").empty()
+        $("#dataList").empty()
         let template = Handlebars.compile($('#stock-list-template').html())
         const newHTML = template({ stock: stocks.data });
-        $("#stockList").append(newHTML)
+        $("#dataList").append(newHTML)
 
-        console.log({ stock: stocks.data });
 
 
     }
@@ -45,20 +44,20 @@ class Renderer {
     }
 
     renderRecommendationList(recommendations) {
-        $("#recommendationList").empty()
+        $("#dataList").empty()
         let template = Handlebars.compile($('#rec-list-template').html())
         const newHTML = template({ recommendations: recommendations.data });
-        $("#recommendationList").append(newHTML)
+        $("#dataList").append(newHTML)
 
     }
 
     renderRecommendation(recommendation) {
 
-        $("#recommendationData").empty()
+        $("#currentData").empty()
 
         let template = Handlebars.compile($('#rec-data-template').html())
         const newHTML = template(recommendation)
-        $("#recommendationData").append(newHTML)
+        $("#currentData").append(newHTML)
     }
 
 }
