@@ -81,7 +81,7 @@ class Logic {
 
 
     async getRecommendationsByStockSymbol(stockSymbol) {
-        await $.get(`/recommendationSS/${stockSymbol}`)
+        await $.get(`/recommendationsSS/${stockSymbol}`)
             .then(async response => {
                 console.log(response);
                 
@@ -90,11 +90,10 @@ class Logic {
             })
     }
     
-    async getRecommendationsByUserId(stockSymbol) {
-        await $.get(`/recommendationsUid/${stockSymbol}`)
-            .then(async response => {
-                this._recommendations = response              
-                
+    async getRecommendationsByUserId(uid) {        
+        await $.get(`/recommendationsUid/${uid}`)
+            .then(response => {
+                this._recommendations = response
             })
     }
 

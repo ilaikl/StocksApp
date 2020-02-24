@@ -61,8 +61,11 @@
   </script>
 
 
-    <!-- rec list box data-id='something'  -->
-
+  <script id="recommendation-list-template" type="text/x-handlebars-template">
+    {{#each recommendation}}
+    <div class='recommendationListBox'><p class='stockListSymbol'>  {{this.stockSymbol}} </p></div>
+    {{/each}}
+  </script>
     
   <script id="stock-list-template" type="text/x-handlebars-template">
     {{#each stock}}

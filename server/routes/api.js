@@ -11,25 +11,65 @@ const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
 const DBInit = function(){  
     console.log("adding to db");
     
-    let u1 = new User({
-        firstName: "james",
-        lastName: "shoobert",
-        img: "imgurl",
-        recommendedStocks: [],
-        followedUsers:  [],
-        rank: 0,
-        myInvestments: ["XXX"] })
-    let u2 = new User({
-        firstName: "salim",
-        lastName: "toama",
-        img: "imgurl",
-        recommendedStocks: [],
-        followedUsers:  [],
-        rank: 15,
-        myInvestments: ["HTA"] })
+    // let u1 = new User({
+    //     firstName: "james",
+    //     lastName: "shoobert",
+    //     img: "imgurl",
+    //     recommendedStocks: [],
+    //     followedUsers:  [],
+    //     rank: 0,
+    //     myInvestments: ["XXX"] })
+    // let u2 = new User({
+    //     firstName: "salim",
+    //     lastName: "toama",
+    //     img: "imgurl",
+    //     recommendedStocks: [],
+    //     followedUsers:  [],
+    //     rank: 15,
+    //     myInvestments: ["HTA"] })
+    // let u3 = new User({
+    //     firstName: "shalom",
+    //     lastName: "tikva",
+    //     img: "imgurl",
+    //     recommendedStocks: [],
+    //     followedUsers:  [],
+    //     rank: 14,
+    //     myInvestments: ["HTA"] })
 
-    u1.save()
-    u2.save()
+    // let r1 = new Recommendation({
+
+    //     stockSymbol: "TEVA"
+    // })
+
+    // u3.save()
+    // r1.user=u3
+    // r1.save()
+
+    // let r2 = new Recommendation({
+
+    //     stockSymbol: "test"
+    // })
+    // let r3 = new Recommendation({
+
+    //     stockSymbol: "wallak"
+    // })
+    //     let u4 = new User({
+    //     firstName: "kanye",
+    //     lastName: "west",
+    //     img: "imgurl",
+    //     recommendedStocks: [],
+    //     followedUsers:  [],
+    //     rank: 44,
+    //     myInvestments: ["NN"] })
+    // u4.save()
+    // r2.user=u4
+    // r3.user=u4
+    // r2.save()
+    // r3.save()
+
+
+    // u1.save()
+    // u2.save()
 }
 // DBInit() //RUN ONCE
 
@@ -77,10 +117,9 @@ router.get('/stock/:stockIdentifier', async function (req, res) {
 
 })
 
-router.get('/recommendationSS/:stockSymbol', function (req, res) {
+router.get('/recommendationsSS/:stockSymbol', function (req, res) {
     Recommendation.find({ stockSymbol: req.params.stockSymbol }, function (err, recommendations) {
-        console.log(recommendations);
-        
+
         res.send(recommendations)
     })
 })
@@ -96,10 +135,15 @@ router.get('/recommendation/:rid', function (req, res) {
     })
 })
 
-router.get('/recommendationUid/:userId', function (req, res) {//check if uid == uid
-    // Recommendation.findOne({user.userId: req.params.userId}, function (err, recommendation) {
-    //     res.send(recommendation)
-    // })
+router.get('/recommendationsUid/:userId', function (req, res) {
+
+
+    Recommendation.find({user:req.params.userId}).exec(function (err, recommendation) {
+
+        res.send(recommendation)
+        
+      })
+
 })
 
 router.post('/recommendation', function (req, res) {
