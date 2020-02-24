@@ -66,17 +66,17 @@ class Logic {
             this._currentStock = {
                 ... res.data[0]
             }
-            const stockChart = new Chart(stockChart, {
-                type: 'line', 
-                data: {
-                  labels:[],
-                  datasets: [
+            // const stockChart = new Chart(stockChart, {
+            //     type: 'line', 
+            //     data: {
+            //       labels:[],
+            //       datasets: [
 
 
-                      ]
-                },
-                options: {}
-            })
+            //           ]
+            //     },
+            //     options: {}
+            // })
         })
         
         
