@@ -1,3 +1,4 @@
+
 class Logic {
     constructor() {
         this._stocks = []
@@ -7,7 +8,7 @@ class Logic {
         this._recommendations = []
         this._currentRecommendation = {}
     }
-
+    
     get users() {
         return this._users
     }
@@ -26,7 +27,7 @@ class Logic {
     get currentRecommendation() {
         return this._currentRecommendation
     }
-
+    
     set currentUser(id) {
         this._currentUser = this._users.find(e => e.userId == id)
     }
@@ -36,36 +37,49 @@ class Logic {
     set currentStock(id) {
         this._currentStock = this._stocks.find(e => e.stockId == id)
     }
-
+    
     async getUser(uid) {
         await $.get(`/user/${uid}`)
-            .then(data => {
-                this._currentUser = {
-                    userId: data._id,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    img: data.img,
-                    recommendedStocks: [],
-                    rank: data.rank
-                }
-            })
+        .then(data => {
+            this._currentUser = {
+                userId: data._id,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                img: data.img,
+                recommendedStocks: [],
+                rank: data.rank
+            }
+        })
     }
-
+    
     async getUsers() {
         await $.get(`/users`)
-            .then(async response => {
-                this._users = [...response]
-            })
+        .then(async response => {
+            this._users = [...response]
+        })
     }
-
+    
     async getStock(stockId) {
         await $.get(`/stock/${stockId}`)
-            .then(res => {
-               
-                this._currentStock = {
-                   ... res.data[0]
-                }
+        .then(res => {
+            
+            this._currentStock = {
+                ... res.data[0]
+            }
+            const stockChart = new Chart(stockChart, {
+                type: 'line', 
+                data: {
+                  labels:[],
+                  datasets: [
+
+
+                      ]
+                },
+                options: {}
             })
+        })
+        
+        
     }
     
     
@@ -81,36 +95,32 @@ class Logic {
 
 
     async getRecommendationsByStockSymbol(stockSymbol) {
-        await $.get(`/recommendationSS/${stockSymbol}`)
-            .then(async response => {
-                console.log(response);
-                
+        await $.get(`/recommendationsSS/${stockSymbol}`)
+            .then(response => {
                 this._recommendations = response              
-                
+            
             })
     }
     
-    async getRecommendationsByUserId(stockSymbol) {
-        await $.get(`/recommendationsUid/${stockSymbol}`)
-            .then(async response => {
-                this._recommendations = response              
-                
+    async getRecommendationsByUserId(uid) {        
+        await $.get(`/recommendationsUid/${uid}`)
+            .then(response => {
+                this._recommendations = response
             })
     }
 
     async getRecommendation(recommendationId) {
         await $.get(`/recommendation/${recommendationId}`)
-            .then(dataUnparsed => {
-                let data = JSON.parse(dataUnparsed)
+            .then(data => {
                 this._currentRecommendation = {
                     
                     recommendationId:data._id,
-                    stockName: data.stockName,
+                    stockSymbol: data.stockSymbol,
                     currentDate: data.currentDate,
                     forcastDate: data.forcastDate,
                     currentValuw:data.currentValuw,
                     forcastValue:data.forcastValue,
-                    user: data.user.userId  
+                    user: data.user  
                 }
             })
     }

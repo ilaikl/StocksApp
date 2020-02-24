@@ -8,8 +8,12 @@
 
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="stylemain.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+ 
 
 <body>
   <div id="main-container">
@@ -63,18 +67,95 @@
     <script id="stock-data-template" type="text/x-handlebars-template">
 
     <div class='stockDataBox'><p class='stockData'>  {{symbol}} </p></div>
+
+  <canvas id="stockChart"></canvas>
+</div>
+      <script>
+
+function drawLineChart() {
+
+// Add a helper to format timestamp data
+Date.prototype.formatMMDDYYYY = function() {
+    return (this.getMonth() + 1) +
+    "/" +  this.getDate() +
+    "/" +  this.getFullYear();
+}
+
+var jsonData = $.ajax({
+  url: 'http://d.microbuilder.io:8080/test/temp',
+  dataType: 'json',
+}).done(function (results) {
+
+  // Split timestamp and data into separate arrays
+  var labels = [], data=[];
+  results["packets"].forEach(function(packet) {
+    labels.push(new Date(packet.timestamp).formatMMDDYYYY());
+    data.push(parseFloat(packet.payloadString));
+  });
+
+  // Create the chart.js data structure using 'labels' and 'data'
+  var tempData = {
+    labels : labels,
+    datasets : [{
+        fillColor             : "rgba(151,187,205,0.2)",
+        strokeColor           : "rgba(151,187,205,1)",
+        pointColor            : "rgba(151,187,205,1)",
+        pointStrokeColor      : "#fff",
+        pointHighlightFill    : "#fff",
+        pointHighlightStroke  : "rgba(151,187,205,1)",
+        data                  : data
+    }]
+  };
+
+        let stockChart = document.getElementById('stockChart').getContext('2d');
+        let currentStockChart = new Chart(stockChart, {})
+
+        let currentStockChartnew = new Chart(stockChart).Line(history)
+        
+      
+      </script>
+
+    <div class='stockDataBox'><p class='stockData'>  {{symbol}} </p>
+    
+      <button id="createRecBtn" onclick=createRecommendation()>Make Forcast</button>
+      <button id="investBtnInStock" onclick=invest()>Invest</button>
+    </div>
+  </script>
+  
+  <script id="rec-data-template" type="text/x-handlebars-template">
+
+    <div class='recDataBox'><p class='recData'>  {{stockSymbol}} Current Data:...add</p> </div>
   </script>
 
 
-    <!-- rec list box data-id='something'  -->
-
     <script id="stock-list-template" type="text/x-handlebars-template">
 
+
+  <script id="recommendation-list-template" type="text/x-handlebars-template">
+    {{#each recommendation}}
+    <div class='recommendationListBox' data-id="{{this._id}}">Recommendation: <p class='stockListSymbol'> {{this.stockSymbol}} </p></div>
+    {{/each}}
+  </script>
+    
+  <script id="stock-list-template" type="text/x-handlebars-template">
     {{#each stock}}
     <div class='stockListBox'><p class='stockListSymbol'>  {{this.symbol}} </p></div>
     {{/each}}
   </script>
   </div>
+
+
+
+  <script id="rec-page-bottom-template" type="text/x-handlebars-template">
+
+    <div class='recBottomBox'>
+      
+      <button id="followUserBtnInRec" onclick=followUser()>Follow User</button>
+
+      <button id="investBtnInRec" onclick=invest()>Invest</button>
+    </div>
+  </script>
+
   <script src="handlebars/dist/handlebars.js"></script>
   <script src="./jquery/dist/jquery.js"></script>
   <script src="render.js"></script>
