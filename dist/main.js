@@ -19,7 +19,7 @@ const loadStocksPage = async function (stockSymbol) {
 }
 
 const loadUsersPage = async function (userId) {
-    await logic.getUser(userId)
+    await logic.getUser(userId)    
     renderer.renderUser(logic.currentUser)
     
     await logic.getRecommendationsByUserId(userId)

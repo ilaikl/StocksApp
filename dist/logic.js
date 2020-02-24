@@ -39,10 +39,9 @@ class Logic {
 
     async getUser(uid) {
         await $.get(`/user/${uid}`)
-            .then(dataUnparsed => {
-                let data = JSON.parse(dataUnparsed)
+            .then(data => {
                 this._currentUser = {
-                    userId: data.userId,
+                    userId: data._id,
                     firstName: data.firstName,
                     lastName: data.lastName,
                     img: data.img,
@@ -105,7 +104,7 @@ class Logic {
                 let data = JSON.parse(dataUnparsed)
                 this._currentRecommendation = {
                     
-                    recommendationId:data.recommendationId,
+                    recommendationId:data._id,
                     stockName: data.stockName,
                     currentDate: data.currentDate,
                     forcastDate: data.forcastDate,
