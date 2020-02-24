@@ -37,8 +37,8 @@ router.get('/stock/:stockIdentifier', async function (req, res) {
         catch(err){
             return
         }
-parseString(Data, (err, result) => {
-    Data = result.current
+    parseString(Data, (err, result) => {
+    Data = result.current //Error : Cannot read property 'current' of undefined
     Data = [Data]
     const relevantData = Data.map( t => {
         return{
@@ -51,7 +51,7 @@ parseString(Data, (err, result) => {
 })
 
 
-router.get('/recommendations/:stockSymbol', function (req, res) {
+router.get('/recommendationSS/:stockSymbol', function (req, res) {
     Recommendation.find({stockSymbol:req.params.stockSymbol}, function (err, recommendations) {
         res.send(recommendations)
     })
@@ -62,10 +62,16 @@ router.get('/recommendations', function (req, res) {
         res.send(recommendation)
     })
 })
-router.get('/recommendation/:recommendationId', function (req, res) {
-    Recommendation.findOne({recommendationId: req.params.recommendationId}, function (err, recommendation) {
+router.get('/recommendation/:rid', function (req, res) {
+    Recommendation.findOne({recommendationId: req.params.rid}, function (err, recommendation) {
         res.send(recommendation)
     })
+})
+
+router.get('/recommendationUid/:userId', function (req, res) {//check if uid == uid
+    // Recommendation.findOne({user.userId: req.params.userId}, function (err, recommendation) {
+    //     res.send(recommendation)
+    // })
 })
 
 router.post('/recommendation',  function (req, res) {
