@@ -1,115 +1,71 @@
-
 body{
-    /* display: grid; */
-    /* height:100vh; */
-    background-color: white;
-    /* grid-template-rows: 1fr 3fr; */
-    font-family: sans-serif;
-}
-#currentCity{
-    position: fixed;
-    height: 50vh;
-    width: 100vw;
-    background-color: #a2e2d4;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    margin: 0px;
-    padding: 15px;
-    border-bottom: white solid 15px;
+    padding: 0;
 }
 
-#currentCity .cityName{
-    position: absolute;
-    top: 10vh;
-    left: 10vw;
-    margin: 0;
-    font-weight: bold;
-    font-size: 17vw;
+.header-container {
+    height: 2vh;
+    background-color: hsla(216, 81%, 54%, 0.904);
     color: white;
-}
+  }
 
-#currentCity .cityTemp{
-    top: 30vh;
-    left: 30vw;
-    margin: 0;
-    position: absolute;
-    font-size: 14vw;
+  .header-container a {
     color: white;
-}
-#currentCity .cityTemp span{
-    position: absolute;
-    font-size: 7vw;
-    top: 10px;
-}
-#currentCity .cityTemp img{
-    height: 15vh;
-}
-
-
-#userInput{
-    width: 80vw;
-    z-index: 2;
-    margin: auto;
-    padding: 15px;
-
-}
-#city-input{
-    border: none;
-    outline: none;
-    background: transparent;
-    border-bottom: 3px solid white ;
-    font-size: 5vw;
-    color: white;
-    
-}
-#saveCityBtn{
-    background: transparent;
-    border: none;
-    margin: 0 auto;
-    color: white;
-    font-size: 5vw;
-    cursor: pointer;
-    display: block;
-    position: absolute;
-    top: 47vh;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#getCityBtn{
-    background: transparent;
-    color: white;
-    font-size: 5vw;
-    border: none;
-    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 2vh;
   }
   
-
-#cityList{
+  .header-container a.icon {
+    background: black;
+    position: absolute;
+    left: 0;
+  }
+.sidepanel  {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidepanel a:hover {
+    background-color: #ddd;
+  }
+  
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+  
+  .openbtn {
     position: relative;
-    top: 50vh;
-    
-    margin: 15px;
-    padding: 15px;
-}
-
-.cityListBox{
-    background-color: white;
-    border-bottom: 3px solid #a2e2d4 ;
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.fa-trash{
-    color: red;
     float: right;
-    margin-right: 35px;
-}
-.cityListBox p{
-    /* color: #a2e2d4; */
-    text-align: center;
-    font-size: 2.3vw;
-}
+    height: 100%;
+    font-size: 1.2vh;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    align-items: center;
+    border: none;
+  }
+  
+  .openbtn :hover {
+    background-color:#444;
+  }
 
+ 
