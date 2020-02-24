@@ -3,9 +3,10 @@ body{
 }
 
 .header-container {
-    height: 2vh;
+    height: 2.5vh;
     background-color: hsla(216, 81%, 54%, 0.904);
     color: white;
+    margin-bottom: 10px;
   }
 
   .header-container a {
@@ -14,11 +15,11 @@ body{
     font-size: 2vh;
   }
   
-  .header-container a.icon {
-    background: black;
+  /* .header-container a.icon {
+    background: src;
     position: absolute;
     left: 0;
-  }
+  } */
 .sidepanel  {
     width: 0;
     position: fixed;

@@ -74,4 +74,7 @@ $("#dataList").on("click", ".recommendationListBox", async function () {
 
 })
 
+
+
+
 loadMainPage()
