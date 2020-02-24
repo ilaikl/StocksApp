@@ -2,6 +2,9 @@ let renderer = new Renderer()
 let logic = new Logic()
 
 
+
+
+
 const loadMainPage = async function () {
     renderer.renderMainMenu()
     await logic.getStocks()
@@ -47,16 +50,20 @@ const getStocksPage = async function () {
 
 const followUser =async function () {
 
+
 }
+
+
+
 const createRecommendation =async function () {
 
+    let popUp = document.getElementById('popup');
+    popUp.classList.toggle("show");
 }
 const invest = async function () {
 
     
     await logic.invest(data)
-
-    loadStocksPage($("#stock-input").val())
 }
 
 $("#dataList").on("click", ".stockListBox", async function () {
