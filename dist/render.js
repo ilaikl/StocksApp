@@ -24,7 +24,7 @@ class Renderer {
     }
 
     renderStocksList(stocks) {
-
+        
         $("#dataList").empty()
         let template = Handlebars.compile($('#stock-list-template').html())
         const newHTML = template({ stock: stocks.data });
@@ -43,10 +43,17 @@ class Renderer {
     }
 
     renderRecommendationList(recommendations) {
+        // recommendations.user=user
+
+
         $("#dataList").empty()
         let template = Handlebars.compile($('#recommendation-list-template').html())
-        const newHTML = template({ recommendation: recommendations });
+        let newRec = { recommendation: [...recommendations] }
+        console.log(newRec);
+
+        const newHTML = template(newRec);
         $("#dataList").append(newHTML)
+        
 
     }
 

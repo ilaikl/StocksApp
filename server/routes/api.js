@@ -9,6 +9,70 @@ const Recommendation = require('../model/Recommendation.js')
 // const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
 const apiKey = `mqfO5JGJyF9Sgfopjp5Cn4WC6F9xz8aZyuJMDMjdftLws23I6JjXKR4bGwwd`
 
+const DBInit = function () {
+    console.log("adding to db");
+
+    // let u1 = new User({
+    //     firstName: "james",
+    //     lastName: "shoobert",
+    //     img: "imgurl",
+    //     recommendedStocks: [],
+    //     followedUsers:  [],
+    //     rank: 0,
+    //     myInvestments: ["XXX"] })
+    // let u2 = new User({
+    //     firstName: "salim",
+    //     lastName: "toama",
+    //     img: "imgurl",
+    //     recommendedStocks: [],
+    //     followedUsers:  [],
+    //     rank: 15,
+    //     myInvestments: ["HTA"] })
+    // let u3 = new User({
+    //     firstName: "yam",
+    //     lastName: "ohana",
+    //     img: "imgurl",
+    //     recommendedStocks: [],
+    //     followedUsers:  [],
+    //     rank: 14,
+    //     myInvestments: ["IN"] })
+
+    // let r1 = new Recommendation({
+
+    //     stockSymbol: "SNAP"
+    // })
+
+    // u3.save()
+    // r1.user=u3
+    // r1.save()
+
+    // let r2 = new Recommendation({
+
+    //     stockSymbol: "test"
+    // })
+    // let r3 = new Recommendation({
+
+    //     stockSymbol: "wallak"
+    // })
+    //     let u4 = new User({
+    //     firstName: "kanye",
+    //     lastName: "west",
+    //     img: "imgurl",
+    //     recommendedStocks: [],
+    //     followedUsers:  [],
+    //     rank: 44,
+    //     myInvestments: ["NN"] })
+    // u4.save()
+    // r2.user=u4
+    // r3.user=u4
+    // r2.save()
+    // r3.save()
+
+
+    // u1.save()
+    // u2.save()
+}
+=======
 // const DBInit = function () {
 // console.log("adding to db");
 
@@ -125,7 +189,6 @@ router.get('/stock/:stockIdentifier', async function (req, res) {
 
 router.get('/recommendationsSS/:stockSymbol', function (req, res) {
     Recommendation.find({ stockSymbol: req.params.stockSymbol }, function (err, recommendations) {
-
         res.send(recommendations)
     })
 })
@@ -135,6 +198,7 @@ router.get('/recommendations', function (req, res) {
         res.send(recommendation)
     })
 })
+
 router.get('/recommendation/:rid', function (req, res) {
     Recommendation.findOne({ _id: req.params.rid }, function (err, recommendation) {
         res.send(recommendation)

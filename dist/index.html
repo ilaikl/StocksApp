@@ -137,13 +137,22 @@
 
   <script id="recommendation-list-template" type="text/x-handlebars-template">
     {{#each recommendation}}
-    <div class='recommendationListBox' data-id="{{this._id}}">Recommendation: <p class='stockListSymbol'> {{this.stockSymbol}} </p></div>
+
+    <div class='recommendationListBox' data-id="{{_id}}">Recommendation: <span class='stockListSymbol'> {{stockSymbol}} </span> by {{user}} {{../user/firstName}} {{user.lastName}}</div>
     {{/each}}
   </script>
 
   <script id="stock-list-template" type="text/x-handlebars-template">
     {{#each stock}}
-    <div class='stockListBox'><p class='stockListSymbol'>  {{this.symbol}} </p></div>
+    <div class='stockListBox' data-id="{{this.symbol}}">
+      <span class='stockListSymbol'>  {{this.symbol}} </span>, 
+      <span class='stockListName'>  {{this.name}} </span>, 
+      <span class='stockListPrice'> Price: {{this.price}} </span>, 
+      <span class='stockListOpen'> Open: {{this.price_open}} </span>, 
+      <span class='stockListHigh'> High: {{this.day_high}} </span>, 
+      <span class='stockListLow'> Low: {{this.day_low}} </span>, 
+      <span class='stockListChange'> {{this.change_pct}}% </span>
+    </div>
     {{/each}}
   </script>
   </div>
