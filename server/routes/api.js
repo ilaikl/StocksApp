@@ -9,9 +9,9 @@ const Recommendation = require('../model/Recommendation.js')
 // const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
 const apiKey = `b6ddIvm5Av0rtoFkCWOTGrTwzDU93bJdkJAy34sB7izLjWjfL49TJKu1taGz`
 
-const DBInit = function(){  
+const DBInit = function () {
     console.log("adding to db");
-    
+
     // let u1 = new User({
     //     firstName: "james",
     //     lastName: "shoobert",
@@ -82,7 +82,7 @@ router.get('/users', async function (req, res) {
 })
 router.get('/user/:userId', function (req, res) {
     let userId = req.params.userId
-    
+
     User.findOne({ _id: userId }, function (err, user) {
         res.send(user)
     })
@@ -101,25 +101,25 @@ router.get('/stock/:stockIdentifier', async function (req, res) {
     let stockId = req.params.stockIdentifier
     let stockData
     let stockHistory
-request(` https://api.worldtradingdata.com/api/v1/stock?symbol=${stockId}&api_token=${apiKey}`, function(err, response){
-    if (err) {
-        console.log('error');
-    
-    } else {
-        
-        stockData = JSON.parse(response.body)
-        
-        res.send(stockData)
-    
-    }
+    request(` https://api.worldtradingdata.com/api/v1/stock?symbol=${stockId}&api_token=${apiKey}`, function (err, response) {
+        if (err) {
+            console.log('error');
 
-})
+        } else {
 
-     await request( `https://api.worldtradingdata.com/api/v1/history?symbol=${stockId}&api_token=${apiKey}` , function (err, result) {
+            stockData = JSON.parse(response.body)
 
-        stockHistory = JSON.parse(result.body)
-        res.send(stockHistory)
+            res.send(stockData)
+
+        }
+
     })
+
+    // await request(`https://api.worldtradingdata.com/api/v1/history?symbol=${stockId}&api_token=${apiKey}`, function (err, result) {
+
+    //     stockHistory = JSON.parse(result.body)
+    //     res.send(stockHistory)
+    // })
 
 })
 
@@ -144,11 +144,11 @@ router.get('/recommendation/:rid', function (req, res) {
 router.get('/recommendationsUid/:userId', function (req, res) {
 
 
-    Recommendation.find({user:req.params.userId}).exec(function (err, recommendations) {
+    Recommendation.find({ user: req.params.userId }).exec(function (err, recommendations) {
 
         res.send(recommendations)
-        
-      })
+
+    })
 
 })
 
