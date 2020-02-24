@@ -44,8 +44,8 @@ class Renderer {
 
     renderRecommendationList(recommendations) {
         $("#dataList").empty()
-        let template = Handlebars.compile($('#rec-list-template').html())
-        const newHTML = template({ recommendations: recommendations.data });
+        let template = Handlebars.compile($('#recommendation-list-template').html())
+        const newHTML = template({ recommendation: recommendations });
         $("#dataList").append(newHTML)
 
     }
