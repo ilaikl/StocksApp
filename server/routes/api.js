@@ -7,7 +7,7 @@ const parseString = require('xml2js').parseString;
 const Recommendation = require('../model/Recommendation.js')
 
 // const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
-const apiKey = `b6ddIvm5Av0rtoFkCWOTGrTwzDU93bJdkJAy34sB7izLjWjfL49TJKu1taGz`
+const apiKey = `mqfO5JGJyF9Sgfopjp5Cn4WC6F9xz8aZyuJMDMjdftLws23I6JjXKR4bGwwd`
 
 // const DBInit = function () {
 // console.log("adding to db");
@@ -161,12 +161,15 @@ router.post('/recommendation', function (req, res) {
 
 
 
-router.put('/user/:currentUser/:follower', async function (req, res) {
+router.put('/user/:userId/:followedUserID', async function (req, res) {
 
-    User.find({ user: req.params.follower }).exec(function (err, followedUsers) {
+    User.findOneAndUpdate({ _id: req.params.userId }).exec(function (err, user) {
 
-        res.send(followedUsers)
+        user.followedUsers.push(req.params.followedUserID)
+
     })
 })
+
+
 
 module.exports = router

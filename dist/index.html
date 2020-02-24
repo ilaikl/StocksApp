@@ -27,7 +27,7 @@
       <button class="openbtn" onclick="openNav()">☰</button>
       <div class="login-container">
         <button onclick="document.getElementById('id01').style.display='block'">Login</button>
-      </form>
+        </form>
       </div>
     </div>
 
@@ -36,10 +36,10 @@
       <span onclick="document.getElementById('id01').style.display='none'" class="close"
         title="Close Modal">&times;</span>
 
-      <!-- Modal Content -->
-      <form class="modal-content animate" action="/localhost:4200">
+      <form class="modal-content animate">
         <div class="imgcontainer">
-          <img src="https://www.pikpng.com/pngl/m/58-584409_wow-doge-png-doge-meme-png-clipart.png" alt="Avatar" class="avatar">
+          <img src="https://www.pikpng.com/pngl/m/58-584409_wow-doge-png-doge-meme-png-clipart.png" alt="Avatar"
+            class="avatar">
         </div>
 
         <div class="container">
@@ -63,16 +63,19 @@
       </form>
     </div>
     <script>
-      // Get the modal
-      var modal = document.getElementById('id01');
+      let modal = document.getElementById('id01');
 
-      // When the user clicks anywhere outside of the modal, close it
       window.onclick = function (event) {
         if (event.target == modal) {
           modal.style.display = "none";
         }
       }
     </script>
+
+
+
+
+
     <div id="mySidepanel" class="sidepanel">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
       <a onclick='rendrerMain()'>info1</a>
@@ -119,11 +122,9 @@
     <div class='stockDataBox'><p class='stockData'>  {{symbol}} </p>
     
       <button id="createRecBtn" onclick=createRecommendation()>Make Forcast</button>
-      <span class="popUpText" id="popup">
 
-        <input type="datetime-local" name="" id="localDate">
-        <input type="number" name="" placeholder="Forcasted Price" id="forcastNum">
-      </span>
+ 
+     
       <button id="investBtnInStock" onclick=invest()>Invest</button>
     </div>
   </script>
