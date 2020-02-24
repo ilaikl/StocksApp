@@ -46,7 +46,6 @@ const getStocksPage = async function () {
 
 $("#dataList").on("click", ".stockListBox", async function () {
 
-    console.log($(this).find(".stockListSymbol")[0].innerText);
     
     loadStocksPage($(this).find(".stockListSymbol")[0].innerText)
 
