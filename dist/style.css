@@ -1,4 +1,9 @@
-body{
+
+body{  background: url(https://r1.ilikewallpaper.net/iphone-x-wallpapers/download/75329/Empire-State-Building--iphone-x-wallpaper-ilikewallpaper_com.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
     padding: 0;
 }
 
@@ -69,4 +74,27 @@ body{
     background-color:#444;
   }
 
+
+#main-container{
+  display: grid;
+  grid-template-rows: 1fr 15fr 15fr;
+  height: 100vh;
+  color: white;
+  font-size: 7ch;
+}
+#currentData{
+  padding: 3ch;
+}
+#datalist{
+}
  
+.stockListBox{
+  border-bottom: 1vh solid black;
+}
+
+#currentData p{
+  /* font-size: 2h; */
+}
+#datalist span{
+  /* font-size: 2h; */
+}

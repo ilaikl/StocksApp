@@ -7,7 +7,7 @@ const parseString = require('xml2js').parseString;
 const Recommendation = require('../model/Recommendation.js')
 
 // const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
-const apiKey = `b6ddIvm5Av0rtoFkCWOTGrTwzDU93bJdkJAy34sB7izLjWjfL49TJKu1taGz`
+const apiKey = `mqfO5JGJyF9Sgfopjp5Cn4WC6F9xz8aZyuJMDMjdftLws23I6JjXKR4bGwwd`
 
 const DBInit = function () {
     console.log("adding to db");
@@ -125,7 +125,6 @@ router.get('/stock/:stockIdentifier', async function (req, res) {
 
 router.get('/recommendationsSS/:stockSymbol', function (req, res) {
     Recommendation.find({ stockSymbol: req.params.stockSymbol }, function (err, recommendations) {
-
         res.send(recommendations)
     })
 })
@@ -135,6 +134,7 @@ router.get('/recommendations', function (req, res) {
         res.send(recommendation)
     })
 })
+
 router.get('/recommendation/:rid', function (req, res) {
     Recommendation.findOne({ _id: req.params.rid }, function (err, recommendation) {
         res.send(recommendation)

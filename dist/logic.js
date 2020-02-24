@@ -38,6 +38,23 @@ class Logic {
         this._currentStock = this._stocks.find(e => e.stockId == id)
     }
     
+    async getUserData(uid) {
+        
+        const data = await $.get(`/user/${uid}`)
+    
+        let user = {
+            userId: data._id,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            img: data.img,
+            recommendedStocks: [],
+            rank: data.rank
+        }
+        
+        return user
+        
+    }
+
     async getUser(uid) {
         await $.get(`/user/${uid}`)
         .then(data => {
@@ -97,9 +114,31 @@ class Logic {
     async getRecommendationsByStockSymbol(stockSymbol) {
         await $.get(`/recommendationsSS/${stockSymbol}`)
             .then(response => {
-                this._recommendations = response              
-            
+
+                this._recommendations = response
+                
+                
             })
+
+
+        this._recommendations.forEach(async r => {
+            
+            const relUser = await this.getUserData(r.user)
+            
+            r.user=relUser
+        })
+
+        // await $.get(`/user/${this._recommendations.user}`)
+        // .then(data => {
+        //     this._recommendations.user = {
+        //         userId: data._id,
+        //         firstName: data.firstName,
+        //         lastName: data.lastName,
+        //         img: data.img,
+        //         rank: data.rank
+        //     }
+        // })
+
     }
     
     async getRecommendationsByUserId(uid) {        
@@ -107,6 +146,13 @@ class Logic {
             .then(response => {
                 this._recommendations = response
             })
+
+        this._recommendations.forEach(async r => {
+            
+            const relUser = await this.getUserData(r.user)
+            
+            r.user=relUser
+        })
     }
 
     async getRecommendation(recommendationId) {
