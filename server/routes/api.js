@@ -8,6 +8,32 @@ const Recommendation = require('../model/Recommendation.js')
 
 const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
 
+const DBInit = function(){  
+    console.log("adding to db");
+    
+    let u1 = new User({
+        firstName: "james",
+        lastName: "shoobert",
+        img: "imgurl",
+        recommendedStocks: [],
+        followedUsers:  [],
+        rank: 0,
+        myInvestments: ["XXX"] })
+    let u2 = new User({
+        firstName: "salim",
+        lastName: "toama",
+        img: "imgurl",
+        recommendedStocks: [],
+        followedUsers:  [],
+        rank: 15,
+        myInvestments: ["HTA"] })
+
+    u1.save()
+    u2.save()
+}
+// DBInit() //RUN ONCE
+
+
 const symbols = "'SNAP','TWTR','TEVA','VOD.L'"
 router.get('/users', async function (req, res) {
     const users = await User.find({})
@@ -17,7 +43,8 @@ router.get('/users', async function (req, res) {
 })
 router.get('/user/:userId', function (req, res) {
     let userId = req.params.userId
-    User.findOne({ userId: req.params.userId }, function (err, user) {
+    
+    User.findOne({ _id: userId }, function (err, user) {
         res.send(user)
     })
 })
@@ -64,7 +91,7 @@ router.get('/recommendations', function (req, res) {
     })
 })
 router.get('/recommendation/:rid', function (req, res) {
-    Recommendation.findOne({ recommendationId: req.params.rid }, function (err, recommendation) {
+    Recommendation.findOne({ _id: req.params.rid }, function (err, recommendation) {
         res.send(recommendation)
     })
 })

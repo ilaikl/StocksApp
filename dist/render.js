@@ -17,7 +17,6 @@ class Renderer {
     // }
 
     renderUser(user) {
-
         $("#currentData").empty()
         let template = Handlebars.compile($('#user-data-template').html())
         const newHTML = template(user);
