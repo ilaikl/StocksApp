@@ -5,6 +5,7 @@ class Logic {
         this._currentStock = {}
         this._users = []
         this._currentUser = {}
+        this._loggedInUser = {}
         this._recommendations = []
         this._currentRecommendation = {}
     }
@@ -31,6 +32,10 @@ class Logic {
     set currentUser(id) {
         this._currentUser = this._users.find(e => e.userId == id)
     }
+
+    set loggedInUser(id) {
+        this._currentUser = this._users.find(e => e.userId == id)
+    }
     set currentRecommendation(id) {
         this._currentRecommendation = this._recommendations.find(e => e.recommendationId == id)
     }
@@ -54,6 +59,9 @@ class Logic {
         return user
         
     }
+
+
+
 
     async getUser(uid) {
         await $.get(`/user/${uid}`)
