@@ -105,17 +105,40 @@ var jsonData = $.ajax({
         
       
       </script>
-    <div class='stockDataBox'><p class='stockData'>  {{symbol}} </p></div>
+
+    <div class='stockDataBox'><p class='stockData'>  {{symbol}} </p>
+    
+      <button id="createRecBtn" onclick=createRecommendation()>Make Forcast</button>
+      <button id="investBtnInStock" onclick=invest()>Invest</button>
+    </div>
+  </script>
+  
+  <script id="rec-data-template" type="text/x-handlebars-template">
+
+    <div class='recDataBox'><p class='recData'>  {{stockSymbol}} Current Data:...add</p> </div>
   </script>
 
-
-    <!-- rec list box data-id='something'  -->
-
+  <script id="recommendation-list-template" type="text/x-handlebars-template">
+    {{#each recommendation}}
+    <div class='recommendationListBox' data-id="{{this._id}}">Recommendation: <p class='stockListSymbol'> {{this.stockSymbol}} </p></div>
+    {{/each}}
+  </script>
     
   <script id="stock-list-template" type="text/x-handlebars-template">
     {{#each stock}}
     <div class='stockListBox'><p class='stockListSymbol'>  {{this.symbol}} </p></div>
     {{/each}}
+  </script>
+
+
+  <script id="rec-page-bottom-template" type="text/x-handlebars-template">
+
+    <div class='recBottomBox'>
+      
+      <button id="followUserBtnInRec" onclick=followUser()>Follow User</button>
+
+      <button id="investBtnInRec" onclick=invest()>Invest</button>
+    </div>
   </script>
 
   <script src="handlebars/dist/handlebars.js"></script>

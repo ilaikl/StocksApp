@@ -95,36 +95,32 @@ class Logic {
 
 
     async getRecommendationsByStockSymbol(stockSymbol) {
-        await $.get(`/recommendationSS/${stockSymbol}`)
-            .then(async response => {
-                console.log(response);
-                
+        await $.get(`/recommendationsSS/${stockSymbol}`)
+            .then(response => {
                 this._recommendations = response              
-                
+            
             })
     }
     
-    async getRecommendationsByUserId(stockSymbol) {
-        await $.get(`/recommendationsUid/${stockSymbol}`)
-            .then(async response => {
-                this._recommendations = response              
-                
+    async getRecommendationsByUserId(uid) {        
+        await $.get(`/recommendationsUid/${uid}`)
+            .then(response => {
+                this._recommendations = response
             })
     }
 
     async getRecommendation(recommendationId) {
         await $.get(`/recommendation/${recommendationId}`)
-            .then(dataUnparsed => {
-                let data = JSON.parse(dataUnparsed)
+            .then(data => {
                 this._currentRecommendation = {
                     
                     recommendationId:data._id,
-                    stockName: data.stockName,
+                    stockSymbol: data.stockSymbol,
                     currentDate: data.currentDate,
                     forcastDate: data.forcastDate,
                     currentValuw:data.currentValuw,
                     forcastValue:data.forcastValue,
-                    user: data.user.userId  
+                    user: data.user  
                 }
             })
     }

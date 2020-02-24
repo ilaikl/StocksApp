@@ -30,8 +30,9 @@ const loadRecommendationsPage = async function (recommendationId) {
     await logic.getRecommendation(recommendationId)
     renderer.renderRecommendation(logic.currentRecommendation)
     
-    await logic.getRecommendationsByUserId(userId)
-    renderer.renderRecommendationList(logic.recommendations)
+    renderer.renderRecPageBottom()
+    // await logic.getRecommendationsByUserId(userId)
+    // renderer.renderRecommendationList(logic.recommendations)
 }
 
 
@@ -44,6 +45,12 @@ const getStocksPage = async function () {
 }
 
 
+const followUser =async function () {
+
+}
+const createRecommendation =async function () {
+
+}
 const invest = async function () {
 
     
@@ -61,8 +68,9 @@ $("#dataList").on("click", ".stockListBox", async function () {
 
 
 $("#dataList").on("click", ".recommendationListBox", async function () {
-
-    loadStocksPage($(this).data().id)
+    console.log($(this).data().id);
+    
+    loadRecommendationsPage($(this).data().id)
 
 })
 
