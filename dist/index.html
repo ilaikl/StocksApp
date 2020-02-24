@@ -8,19 +8,30 @@
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
 
-  <div id="navBar">
-    <div id="logo">
-      <img>
+  <!-- <----------------------------------------------------------------------------->
+  <div class="header-container">
+    <a href="#home" class="active">Logo</a>
+    <div id="mySidepanel" class="sidepanel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <a href="#">info1</a>
+      <a href="#">info2</a>
+      <a href="#">info3</a>
+      <a href="#">info4</a>
     </div>
-    <div id="optionsMenuButton">
-      <i class="fas fa-bars"></i>
-    </div>
+    <button class="openbtn" onclick="openNav()">☰</button>
   </div>
+  <script>
+    function openNav() {
+      document.getElementById("mySidepanel").style.width = "250px";
+    }
+    function closeNav() {
+      document.getElementById("mySidepanel").style.width = "0";
+    }
+  </script>
 
-
+  <!-- <----------------------------------------------------------------------------->
   <div id="currentData">
   </div>
 
