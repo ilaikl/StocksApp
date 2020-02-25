@@ -20,11 +20,11 @@ body{  background: url(https://r1.ilikewallpaper.net/iphone-x-wallpapers/downloa
     font-size: 2vh;
   }
   
-  /* .header-container a.icon {
+ .header-container a.icon {
     background: src;
     position: absolute;
     left: 0;
-  } */
+  } 
 .sidepanel  {
     width: 0;
     position: fixed;
@@ -76,29 +76,45 @@ body{  background: url(https://r1.ilikewallpaper.net/iphone-x-wallpapers/downloa
 
 
 #main-container{
-  display: grid;
-  grid-template-rows: 1fr 15fr 15fr;
-  height: 100vh;
+  /* display: grid; */
+  /* grid-template-rows: 1fr 15fr 15fr; */
+  /* height: 100vh; */
   color: white;
-  font-size: 7ch;
+  font-size: 2ch;
+}
+
+#bodyContainer{
+  
+  display: grid; 
+  grid-template-rows: 1fr 1fr;
+   height: 100vh;
+   font-size: xx-large;
+   color: white;
+
+
 }
 #currentData{
   padding: 3ch;
 }
-#datalist{
+/* #datalist{
+
+
 }
- 
+  */
 .stockListBox{
   border-bottom: 1vh solid black;
+  size: 6vh;
+
 }
 
-#currentData p{
-  /* font-size: 2h; */
-}
+ #currentData p{
+   font-size: 6vh; 
+ }
 #datalist span{
-  /* font-size: 2h; */
+  font-size: 6vh;
 }
-=======
+ /*/////////////////////////////////////////////////////////////////////////////////// */
+
   .popUpText{
     visibility: hidden;
     width: 160px;
@@ -167,6 +183,8 @@ body{  background: url(https://r1.ilikewallpaper.net/iphone-x-wallpapers/downloa
     background-color: #2196F3;
     color: white;
   }
+
+
   
   .topnav .login-container {
     float: right;
@@ -327,7 +345,7 @@ span.psw {
 
 
 #createRecBtn{
-  float: right;
+    float: right;
     padding: 6px;
     margin-top: 8px;
     margin-right: 16px;
@@ -353,4 +371,53 @@ span.psw {
 
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////
-*/
+*/ 
+
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////
+*/ 
+
