@@ -87,9 +87,10 @@ class Logic {
     async getStock(stockId) {
         await $.get(`/stock/${stockId}`)
             .then(res => {
-
-                this._currentStock = {
-                    ...res.data[0]
+                if(res.data!=undefined){
+                    this._currentStock = {
+                        ...res.data[0]
+                    }
                 }
                 // const stockChart = new Chart(stockChart, {
                 //     type: 'line', 
@@ -128,38 +129,20 @@ class Logic {
             const relUser = await this.getUserData(r.user)
     
             r.user = relUser
-
         }
-
-        // this._recommendations.forEach( r => {
-
-        // })
-
-        // await $.get(`/user/${this._recommendations.user}`)
-        // .then(data => {
-        //     this._recommendations.user = {
-        //         userId: data._id,
-        //         firstName: data.firstName,
-        //         lastName: data.lastName,
-        //         img: data.img,
-        //         rank: data.rank
-        //     }
-        // })
-
     }
 
     async getRecommendationsByUserId(uid) {
-        await $.get(`/recommendationsUid/${uid}`)
-            .then(response => {
-                this._recommendations = response
-            })
+        const response = await $.get(`/recommendationsUid/${uid}`)
+            
 
-        this._recommendations.forEach(async r => {
-
+        this._recommendations = response
+        for(let r of this._recommendations) {
             const relUser = await this.getUserData(r.user)
-
+    
             r.user = relUser
-        })
+
+        }
     }
 
     async getRecommendation(recommendationId) {
@@ -188,15 +171,13 @@ class Logic {
         today = mm + '/' + dd + '/' + yyyy;
 
         let newRec = {
+            user: "5e53d0a0cfcd271840cc63c7",
             stockSymbol: this._currentStock.symbol,
             currentDate: today,
             forcastDate: forcastedDate,
             currentValuw:this._currentStock.price,
             forcastValue:forcastedPrice
         }
-
-        console.log(newRec)
-        
         await $.post('/recommendation', newRec)
     }
 

@@ -89,29 +89,55 @@ body{  background: url(https://r1.ilikewallpaper.net/iphone-x-wallpapers/downloa
   grid-template-rows: 1fr 1fr;
    height: 100vh;
    font-size: xx-large;
-   color: white;
+   color: black;
 
 
 }
 #currentData{
+  background-color: white;
+  opacity: 0.9;
   padding: 3ch;
 }
-/* #datalist{
-
+#datalist{
+  background-color: white;
+  opacity: 0.9;
+  padding: 3ch;
+}
+ 
+.recommendationListBox{
+  border-bottom: 1vh solid rgb(0, 0, 0);
+  size: 6vh;
+  background-color: white;
+  opacity: 0.9;
 
 }
-  */
 .stockListBox{
-  border-bottom: 1vh solid black;
+  border-bottom: 1vh solid rgb(14, 196, 14);
   size: 6vh;
+  background-color: white;
+  opacity: 0.9;
 
 }
 
  #currentData p{
-   font-size: 6vh; 
+   font-size: 3vh; 
  }
 #datalist span{
   font-size: 6vh;
+}
+.stockDataBox p{
+  text-align: center;
+}
+.stockDataSymbol{
+  font-weight: bold;
+  display: inline;
+  text-align: center;
+  margin-left: 20vw;
+}
+.stockDataName{
+  font-weight: bold;
+  display: inline;
+  text-align: center;
 }
  /*/////////////////////////////////////////////////////////////////////////////////// */
 

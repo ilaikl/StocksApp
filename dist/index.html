@@ -154,12 +154,12 @@
     <script id="stock-data-template" type="text/x-handlebars-template">
 
     <div class='stockDataBox'>
-      <p class='stockDataSymbol'>  {{symbol}} </p>, 
-      <p class='stockDataName'>  {{name}} </p>, 
-      <p class='stockDataPrice'> Price: {{price}} </p>, 
-      <p class='stockDataOpen'> Open: {{price_open}} </p>, 
-      <p class='stockDataHigh'> High: {{day_high}} </p>, 
-      <p class='stockDataLow'> Low: {{day_low}} </p>, 
+      <p class='stockDataName'>  {{name}} </p> 
+      <p class='stockDataSymbol'>  {{symbol}} </p>
+      <p class='stockDataPrice'> Price: {{price}} </p> 
+      <p class='stockDataOpen'> Open: {{price_open}} </p>
+      <p class='stockDataHigh'> High: {{day_high}} </p>
+      <p class='stockDataLow'> Low: {{day_low}} </p>
       <p class='stockDataChange'> {{change_pct}}% </p>
     
       <button id="createRecBtn" onclick=createRecommendation()>Make Forcast</button>
@@ -171,14 +171,17 @@
 
     <script id="rec-data-template" type="text/x-handlebars-template">
 
-    <div class='recDataBox'><p class='recData'>  {{stockSymbol}} Current Data:...add</p> </div>
+    <div class='recDataBox'><p class='recData'>  {{stockSymbol}}<br> Initial Price: {{currentValuw}}, Date: {{currentDate}}
+      <br> Forcasted Price: {{forcastValue}}, Date: {{forcastDate}}
+    </p> </div>
   </script>
 
 
     <script id="recommendation-list-template" type="text/x-handlebars-template">
+      Recommendations:
     {{#each recommendation}}
 
-    <div class='recommendationListBox' data-id="{{_id}}">Recommendation: <span class='stockListSymbol'> {{stockSymbol}} </span> by {{user.firstName}}</div>
+    <div class='recommendationListBox' data-id="{{_id}}"> <span class='stockListText'>{{symbol}} price will be {{forcastValue}} on date: {{forcastDate}}  by {{user.firstName}} {{user.lastName}} User Rank:{{user.rank}}</span></div>
     {{/each}}
   </script>
 
