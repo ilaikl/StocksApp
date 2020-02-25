@@ -7,7 +7,7 @@ const parseString = require('xml2js').parseString;
 const Recommendation = require('../model/Recommendation.js')
 
 // const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
-const apiKey = `mqfO5JGJyF9Sgfopjp5Cn4WC6F9xz8aZyuJMDMjdftLws23I6JjXKR4bGwwd`
+const apiKey = `F46XwVDlHPb0t6dHqwpDGwyWFHXjTEopln1c7CuOlw8omMBTsadKuUGzNls6`
 
 const DBInit = function () {
     console.log("adding to db");
