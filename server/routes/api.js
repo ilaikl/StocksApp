@@ -72,7 +72,6 @@ const DBInit = function () {
     // u1.save()
     // u2.save()
 }
-=======
 // const DBInit = function () {
 // console.log("adding to db");
 
