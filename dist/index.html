@@ -21,9 +21,20 @@
 
     <!-- <----------------------------------------------------------------------------->
     <div class="topnav">
-      <a class="active" href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a class="active" onclick=loadMainPage()>Home</a>
+      <a href="#about" onclick=openForm()>About</a>
+
+      <script id="main-menu-template" type="text/x-handlebars-template">
+        <div id="userInput">
+
+
+          
+          <input type="text" id="stock-input" placeholder="Search Stock">
+          <button id="getStocksBtn" onclick=getStocksPage()><i class="fa fa-search"></i></button>
+          <input type="text" id="user-input" placeholder="Search User">
+          <button id="getUserBtn" onclick=getUsersPage()><i class="fa fa-search"></i></button>
+        </div>
+      </script>
       <button class="openbtn" onclick="openNav()">☰</button>
       <div class="login-container">
         <button onclick="document.getElementById('id01').style.display='block'">Login</button>
@@ -31,7 +42,21 @@
       </div>
     </div>
 
-    <!-- The Modal -->
+    <script>
+
+
+      function openForm() {
+
+        alert("It's all about the money")
+
+
+      }
+
+
+    </script>
+
+
+
     <div id="id01" class="modal">
       <span onclick="document.getElementById('id01').style.display='none'" class="close"
         title="Close Modal">&times;</span>
@@ -94,55 +119,44 @@
   </script>
 
   <!-- <----------------------------------------------------------------------------->
-  <div id="currentData">
-  </div>
+  <div id="bodyContainer">
 
+    <div id="currentData">
 
-  <div id="dataList">
-  </div>
-
-
-  <!-- Handelbars -->
-  <script id="main-menu-template" type="text/x-handlebars-template">
-    <div id="userInput">
-      <input type="text" id="stock-input" placeholder="Search Stock">
-      <button id="getStocksBtn" onclick=getStocksPage()><i class="fa fa-search"></i></button>
-      <input type="text" id="user-input" placeholder="Search User">
-      <button id="getUserBtn" onclick=getUsersPage()><i class="fa fa-search"></i></button>
     </div>
-  </script>
+
+    <!-- Handelbars -->
 
 
-  <script id="user-data-template" type="text/x-handlebars-template">
+    <script id="user-data-template" type="text/x-handlebars-template">
     <div class='userDataBox'><p class="userData">  {{firstName}} {{lastName}}, rank: {{rank}}  </p></div>
   </script>
 
-  <script id="stock-data-template" type="text/x-handlebars-template">
+    <script id="stock-data-template" type="text/x-handlebars-template">
 
     <div class='stockDataBox'><p class='stockData'>  {{symbol}} </p>
     
       <button id="createRecBtn" onclick=createRecommendation()>Make Forcast</button>
-
- 
+   
      
       <button id="investBtnInStock" onclick=invest()>Invest</button>
     </div>
   </script>
 
-  <script id="rec-data-template" type="text/x-handlebars-template">
+    <script id="rec-data-template" type="text/x-handlebars-template">
 
     <div class='recDataBox'><p class='recData'>  {{stockSymbol}} Current Data:...add</p> </div>
   </script>
 
 
-  <script id="recommendation-list-template" type="text/x-handlebars-template">
+    <script id="recommendation-list-template" type="text/x-handlebars-template">
     {{#each recommendation}}
 
     <div class='recommendationListBox' data-id="{{_id}}">Recommendation: <span class='stockListSymbol'> {{stockSymbol}} </span> by {{user}} {{../user/firstName}} {{user.lastName}}</div>
     {{/each}}
   </script>
 
-  <script id="stock-list-template" type="text/x-handlebars-template">
+    <script id="stock-list-template" type="text/x-handlebars-template">
     {{#each stock}}
     <div class='stockListBox' data-id="{{this.symbol}}">
       <span class='stockListSymbol'>  {{this.symbol}} </span>, 

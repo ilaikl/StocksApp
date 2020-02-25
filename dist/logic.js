@@ -9,7 +9,7 @@ class Logic {
         this._recommendations = []
         this._currentRecommendation = {}
     }
-    
+
     get users() {
         return this._users
     }
@@ -28,7 +28,7 @@ class Logic {
     get currentRecommendation() {
         return this._currentRecommendation
     }
-    
+
     set currentUser(id) {
         this._currentUser = this._users.find(e => e.userId == id)
     }
@@ -42,11 +42,11 @@ class Logic {
     set currentStock(id) {
         this._currentStock = this._stocks.find(e => e.stockId == id)
     }
-    
+
     async getUserData(uid) {
-        
+
         const data = await $.get(`/user/${uid}`)
-    
+
         let user = {
             userId: data._id,
             firstName: data.firstName,
@@ -55,9 +55,9 @@ class Logic {
             recommendedStocks: [],
             rank: data.rank
         }
-        
+
         return user
-        
+
     }
 
 
@@ -65,56 +65,56 @@ class Logic {
 
     async getUser(uid) {
         await $.get(`/user/${uid}`)
-        .then(data => {
-            this._currentUser = {
-                userId: data._id,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                img: data.img,
-                recommendedStocks: [],
-                rank: data.rank
-            }
-        })
+            .then(data => {
+                this._currentUser = {
+                    userId: data._id,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    img: data.img,
+                    recommendedStocks: [],
+                    rank: data.rank
+                }
+            })
     }
-    
+
     async getUsers() {
         await $.get(`/users`)
-        .then(async response => {
-            this._users = [...response]
-        })
+            .then(async response => {
+                this._users = [...response]
+            })
     }
-    
+
     async getStock(stockId) {
         await $.get(`/stock/${stockId}`)
-        .then(res => {
-            
-            this._currentStock = {
-                ... res.data[0]
-            }
-            // const stockChart = new Chart(stockChart, {
-            //     type: 'line', 
-            //     data: {
-            //       labels:[],
-            //       datasets: [
+            .then(res => {
+
+                this._currentStock = {
+                    ...res.data[0]
+                }
+                // const stockChart = new Chart(stockChart, {
+                //     type: 'line', 
+                //     data: {
+                //       labels:[],
+                //       datasets: [
 
 
-            //           ]
-            //     },
-            //     options: {}
-            // })
-        })
-        
-        
+                //           ]
+                //     },
+                //     options: {}
+                // })
+            })
+
+
     }
-    
-    
+
+
     async getStocks() {
         await $.get(`/stocks`)
             .then(async response => {
                 this._stocks = response
                 // this._stocks = JSON.parse(response)
-                
-                
+
+
             })
     }
 
@@ -124,16 +124,16 @@ class Logic {
             .then(response => {
 
                 this._recommendations = response
-                
-                
+
+
             })
 
 
         this._recommendations.forEach(async r => {
-            
+
             const relUser = await this.getUserData(r.user)
-            
-            r.user=relUser
+
+            r.user = relUser
         })
 
         // await $.get(`/user/${this._recommendations.user}`)
@@ -148,18 +148,18 @@ class Logic {
         // })
 
     }
-    
-    async getRecommendationsByUserId(uid) {        
+
+    async getRecommendationsByUserId(uid) {
         await $.get(`/recommendationsUid/${uid}`)
             .then(response => {
                 this._recommendations = response
             })
 
         this._recommendations.forEach(async r => {
-            
+
             const relUser = await this.getUserData(r.user)
-            
-            r.user=relUser
+
+            r.user = relUser
         })
     }
 
@@ -167,14 +167,14 @@ class Logic {
         await $.get(`/recommendation/${recommendationId}`)
             .then(data => {
                 this._currentRecommendation = {
-                    
-                    recommendationId:data._id,
+
+                    recommendationId: data._id,
                     stockSymbol: data.stockSymbol,
                     currentDate: data.currentDate,
                     forcastDate: data.forcastDate,
-                    currentValuw:data.currentValuw,
-                    forcastValue:data.forcastValue,
-                    user: data.user  
+                    currentValuw: data.currentValuw,
+                    forcastValue: data.forcastValue,
+                    user: data.user
                 }
             })
     }
