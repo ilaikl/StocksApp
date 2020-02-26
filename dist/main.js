@@ -53,13 +53,20 @@ const followUser = async function () {
 
 }
 
+const submitRecommendation = async function () {
+    console.log($("#priceInput").val()+"   "+$("#dateInput").val());
+    
+    await logic.saveRecommendation($("#priceInput").val(),$("#dateInput").val())
+   loadStocksPage(logic.currentStock.symbol)
+}
 
+const closeForm = function () {
+    $("#myForm").css({ "display": "none" })
+}
 
 const createRecommendation = async function () {
+    $("#myForm").css({ "display": "block" })
 
-    // let popUp = document.getElementById('myForm');
-    // popUp.classList.toggle("show");
- 
 }
 
 

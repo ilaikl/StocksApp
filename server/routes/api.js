@@ -7,7 +7,8 @@ const parseString = require('xml2js').parseString;
 const Recommendation = require('../model/Recommendation.js')
 
 // const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
-const apiKey = `F46XwVDlHPb0t6dHqwpDGwyWFHXjTEopln1c7CuOlw8omMBTsadKuUGzNls6`
+const apiKey = `NC4jetaZxIMrSFZVlyO3YDurJgcIYr5ztdJaTXj1bS4JRjfzuM6MDpkmuNki`
+//const apiKey = `F46XwVDlHPb0t6dHqwpDGwyWFHXjTEopln1c7CuOlw8omMBTsadKuUGzNls6`
 
 const DBInit = function () {
     console.log("adding to db");
@@ -162,8 +163,8 @@ router.get('/stocks', async function (req, res) {
 router.get('/stock/:stockIdentifier', async function (req, res) {
 
     let stockId = req.params.stockIdentifier
+    
     let stockData
-    let stockHistory
     request(` https://api.worldtradingdata.com/api/v1/stock?symbol=${stockId}&api_token=${apiKey}`, function (err, response) {
         if (err) {
             console.log('error');
@@ -171,7 +172,7 @@ router.get('/stock/:stockIdentifier', async function (req, res) {
         } else {
 
             stockData = JSON.parse(response.body)
-
+            
             res.send(stockData)
 
         }

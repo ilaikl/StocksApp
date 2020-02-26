@@ -87,10 +87,10 @@ class Logic {
     async getStock(stockId) {
         await $.get(`/stock/${stockId}`)
             .then(res => {
-
-                this._currentStock = {
-                    ...res.data[0]
-                }
+                if(res.data!=undefined){
+                    this._currentStock = {
+                        ...res.data[0]
+                    }
                 // const stockChart = new Chart(stockChart, {
                 //     type: 'line', 
                 //     data: {
@@ -113,54 +113,34 @@ class Logic {
             .then(async response => {
                 this._stocks = response
                 // this._stocks = JSON.parse(response)
-
-
+                this._recommendations = response
             })
     }
 
 
     async getRecommendationsByStockSymbol(stockSymbol) {
-        await $.get(`/recommendationsSS/${stockSymbol}`)
-            .then(response => {
+        const response = await $.get(`/recommendationsSS/${stockSymbol}`)
+            
 
-                this._recommendations = response
-
-
-            })
-
-
-        this._recommendations.forEach(async r => {
-
+        this._recommendations = response
+        for(let r of this._recommendations) {
             const relUser = await this.getUserData(r.user)
-
+    
             r.user = relUser
-        })
-
-        // await $.get(`/user/${this._recommendations.user}`)
-        // .then(data => {
-        //     this._recommendations.user = {
-        //         userId: data._id,
-        //         firstName: data.firstName,
-        //         lastName: data.lastName,
-        //         img: data.img,
-        //         rank: data.rank
-        //     }
-        // })
-
+        }
     }
 
     async getRecommendationsByUserId(uid) {
-        await $.get(`/recommendationsUid/${uid}`)
-            .then(response => {
-                this._recommendations = response
-            })
+        const response = await $.get(`/recommendationsUid/${uid}`)
+            
 
-        this._recommendations.forEach(async r => {
-
+        this._recommendations = response
+        for(let r of this._recommendations) {
             const relUser = await this.getUserData(r.user)
-
+    
             r.user = relUser
-        })
+
+        }
     }
 
     async getRecommendation(recommendationId) {
@@ -180,8 +160,23 @@ class Logic {
     }
 
 
-    async saveRecommendation() {
-        await $.post('/city', this._currentCity)
+    async saveRecommendation(forcastedPrice,forcastedDate) {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        
+        today = mm + '/' + dd + '/' + yyyy;
+
+        let newRec = {
+            user: "5e53d0a0cfcd271840cc63c7",
+            stockSymbol: this._currentStock.symbol,
+            currentDate: today,
+            forcastDate: forcastedDate,
+            currentValuw:this._currentStock.price,
+            forcastValue:forcastedPrice
+        }
+        await $.post('/recommendation', newRec)
     }
 
 }

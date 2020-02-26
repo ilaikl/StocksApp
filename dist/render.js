@@ -24,7 +24,7 @@ class Renderer {
     }
 
     renderStocksList(stocks) {
-        
+
         $("#dataList").empty()
         let template = Handlebars.compile($('#stock-list-template').html())
         const newHTML = template({ stock: stocks.data });
@@ -43,27 +43,28 @@ class Renderer {
     }
 
     renderRecommendationList(recommendations) {
-        // recommendations.user=user
-
-
         $("#dataList").empty()
         let template = Handlebars.compile($('#recommendation-list-template').html())
-        let newRec = { recommendation: [...recommendations] }
-        console.log(newRec);
+        console.log(recommendations);
 
-        const newHTML = template(newRec);
-        $("#dataList").append(newHTML)
+        // for (let rec of recommendations){
+        //     rec.forcastDate.slice(0, index(rec.forcastDate, 'T')); 
+        // }
+        let newRec={ recommendation: [...recommendations] }
         
-
+        const newHTML = template(newRec)
+        $("#dataList").append(newHTML)
     }
 
-    renderRecPageBottom(){
+    renderRecPageBottom() {
         $("#dataList").empty()
         let template = Handlebars.compile($('#rec-page-bottom-template').html())
         $("#dataList").append(template())
     }
     renderRecommendation(recommendation) {
 
+        console.log(recommendation);
+        
         $("#currentData").empty()
 
         let template = Handlebars.compile($('#rec-data-template').html())
