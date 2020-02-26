@@ -117,6 +117,7 @@ body{  background: url(https://r1.ilikewallpaper.net/iphone-x-wallpapers/downloa
   background-color: white;
   opacity: 0.9;
 
+
 }
 
  #currentData p{
@@ -447,7 +448,6 @@ span.psw {
 /* ///////////////////////////////////////////////////////////////////////////////////////////
 */ 
 
-
 *{box-sizing: border-box;}
 
 /* Button used to open the contact form - fixed at the bottom of the page */
@@ -517,3 +517,4 @@ span.psw {
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+

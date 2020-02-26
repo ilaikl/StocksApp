@@ -66,6 +66,7 @@ const closeForm = function () {
 
 const createRecommendation = async function () {
     $("#myForm").css({ "display": "block" })
+
 }
 
 

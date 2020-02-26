@@ -8,6 +8,7 @@ const Recommendation = require('../model/Recommendation.js')
 
 // const apiKey = `wViivid8O6bjEmZvBBMWxnMx4E9R2yDbmF2bWYSP5I9Ju1Bygbcp2FH9J7Qt`
 const apiKey = `NC4jetaZxIMrSFZVlyO3YDurJgcIYr5ztdJaTXj1bS4JRjfzuM6MDpkmuNki`
+//const apiKey = `F46XwVDlHPb0t6dHqwpDGwyWFHXjTEopln1c7CuOlw8omMBTsadKuUGzNls6`
 
 const DBInit = function () {
     console.log("adding to db");

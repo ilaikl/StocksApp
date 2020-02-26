@@ -91,7 +91,6 @@ class Logic {
                     this._currentStock = {
                         ...res.data[0]
                     }
-                }
                 // const stockChart = new Chart(stockChart, {
                 //     type: 'line', 
                 //     data: {
@@ -114,8 +113,7 @@ class Logic {
             .then(async response => {
                 this._stocks = response
                 // this._stocks = JSON.parse(response)
-
-
+                this._recommendations = response
             })
     }
 
